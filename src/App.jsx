@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/Home';
@@ -8,6 +7,7 @@ import Compare from './pages/Compare';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ThemeToggle from './components/ThemeToggle';
+import AppFooter from './components/AppFooter';
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
