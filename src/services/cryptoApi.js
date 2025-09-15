@@ -15,7 +15,18 @@ export const getCoins = async (page = 1, perPage = 20) => {
   return response.data;
 };
 
+
 export const getCoinDetail = async (id) => {
   const response = await axios.get(`${BASE_URL}/coins/${id}`);
   return response.data;
+};
+
+export const getCoinMarketChart = async (id, days = 30) => {
+  const response = await axios.get(`${BASE_URL}/coins/${id}/market_chart`, {
+    params: {
+      vs_currency: 'usd',
+      days,
+    },
+  });
+  return response.data.prices;
 };

@@ -1,7 +1,15 @@
+
 body {
   margin: 0;
   font-family: 'Roboto', Arial, sans-serif;
   background: #f5f5f5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+.dark-mode {
+  background: #181818 !important;
+  color: #f5f5f5 !important;
 }
 
 .container {

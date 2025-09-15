@@ -1,5 +1,8 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getCoins, getCoinDetail } from '../services/cryptoApi';
+import { getCoins, getCoinDetail, getCoinMarketChart } from '../services/cryptoApi';
+export const fetchCoinMarketChart = createAsyncThunk('crypto/fetchCoinMarketChart', async ({ id, days = 30 }) => {
+  return await getCoinMarketChart(id, days);
+});
 
 export const fetchCoins = createAsyncThunk('crypto/fetchCoins', async (page = 1) => {
   return await getCoins(page);
@@ -14,6 +17,7 @@ const cryptoSlice = createSlice({
   initialState: {
     coins: [],
     coinDetail: null,
+    coinChart: [],
     favorites: [],
     loading: false,
     error: null,
@@ -51,6 +55,18 @@ const cryptoSlice = createSlice({
         state.coinDetail = action.payload;
       })
       .addCase(fetchCoinDetail.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      })
+      .addCase(fetchCoinMarketChart.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchCoinMarketChart.fulfilled, (state, action) => {
+        state.loading = false;
+        state.coinChart = action.payload;
+      })
+      .addCase(fetchCoinMarketChart.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       });

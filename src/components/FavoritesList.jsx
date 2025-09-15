@@ -1,18 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFavorite } from '../store/cryptoSlice';
+import AlertBanner from './AlertBanner';
 import { Link } from 'react-router-dom';
 
 const FavoritesList = () => {
   const dispatch = useDispatch();
   const { coins, favorites } = useSelector(state => state.crypto);
   const favoriteCoins = coins.filter(coin => favorites.includes(coin.id));
+  const [message, setMessage] = useState('');
+  const [alertType, setAlertType] = useState('info');
+
+  const handleRemove = (id, name) => {
+    dispatch(removeFavorite(id));
+    setMessage(`Se quitó ${name} de favoritos.`);
+    setAlertType('warning');
+    setTimeout(() => {
+      alert(`Se quitó ${name} de favoritos.`);
+    }, 100);
+  };
 
   if (favoriteCoins.length === 0) return <p>No tienes criptomonedas favoritas.</p>;
 
   return (
     <div>
       <h2>Mis Criptomonedas Favoritas</h2>
+      <AlertBanner message={message} type={alertType} onClose={() => setMessage('')} />
       <ul style={{ listStyle: 'none', padding: 0 }}>
         {favoriteCoins.map(coin => (
           <li key={coin.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', background: '#fff', borderRadius: '8px', padding: '1rem', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
@@ -24,7 +37,7 @@ const FavoritesList = () => {
               Precio: ${coin.current_price.toLocaleString()}
             </div>
             <button
-              onClick={() => dispatch(removeFavorite(coin.id))}
+              onClick={() => handleRemove(coin.id, coin.name)}
               style={{ marginLeft: '1rem', padding: '0.5rem 1rem', borderRadius: '4px', border: 'none', background: '#ffb700', cursor: 'pointer' }}
             >
               Quitar de favoritos
