@@ -10,7 +10,7 @@ import CryptoNews from './CryptoNews';
 const CryptoDetail = ({ disableFetch = false }) => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const { coinDetail, loading, error } = useSelector(state => state.crypto);
+  const { coinDetail, coinChart, loading, error } = useSelector(state => state.crypto);
 
   useEffect(() => {
     if (!disableFetch && id) {
