@@ -46,15 +46,14 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/detail" element={<div style={{padding:'2rem',textAlign:'center',color:'#ff5252'}}>Selecciona una moneda para ver sus detalles.</div>} />
+        <Route path="/detail/:id" element={<Detail />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/compare" element={<Compare />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        </Routes>
+      </Routes>
       <AppFooter />
-    );
     </>
   );
 }
