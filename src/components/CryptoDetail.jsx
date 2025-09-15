@@ -40,7 +40,7 @@ const CryptoDetail = ({ disableFetch = false }) => {
       <p><strong>Sitio oficial:</strong> <a href={coinDetail.links.homepage[0]} target="_blank" rel="noopener noreferrer">{coinDetail.links.homepage[0]}</a></p>
       <div style={{ marginTop: '1.5rem' }}>
         <strong>Descripción:</strong>
-        <div dangerouslySetInnerHTML={{ __html: coinDetail.description.es || coinDetail.description.en }} />
+  <div dangerouslySetInnerHTML={{ __html: (coinDetail.description.es || coinDetail.description.en || '').replace(/\);/g, '') }} />
       </div>
   <PriceChart prices={coinChart} />
   <CryptoNews coinName={coinDetail.name} />
