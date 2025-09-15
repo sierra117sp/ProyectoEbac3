@@ -21,7 +21,7 @@ const CryptoDetail = ({ disableFetch = false }) => {
 
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error: {error}</p>;
-  if (!coinDetail) return <p>No hay datos.</p>;
+  if (!coinDetail || !coinDetail.name) return <div style={{padding:'2rem',textAlign:'center',color:'#ff5252'}}>No hay datos disponibles para esta moneda.</div>;
 
   return (
     <div style={{ background: '#fff', borderRadius: '8px', padding: '2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
