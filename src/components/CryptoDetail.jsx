@@ -27,8 +27,8 @@ const CryptoDetail = ({ disableFetch = false }) => {
     <div style={{ background: '#fff', borderRadius: '8px', padding: '2rem', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }}>
       <h2>{coinDetail.name} ({coinDetail.symbol.toUpperCase()})</h2>
       <img src={coinDetail.image.large} alt={coinDetail.name} width={64} height={64} />
-  <p><strong>Precio actual:</strong> ${coinDetail.market_data.current_price.usd.toLocaleString()}</p>
-  <CurrencyConverter price={coinDetail.market_data.current_price.usd} symbol={coinDetail.symbol} />
+      <p><strong>Precio actual:</strong> ${coinDetail.market_data.current_price.usd.toLocaleString()}</p>
+      <CurrencyConverter price={coinDetail.market_data.current_price.usd} symbol={coinDetail.symbol} />
       <p><strong>Capitalización de mercado:</strong> ${coinDetail.market_data.market_cap.usd.toLocaleString()}</p>
       <p><strong>Puntaje de comunidad:</strong> {coinDetail.community_score}</p>
       <p><strong>Ranking de mercado:</strong> #{coinDetail.market_cap_rank}</p>
@@ -38,12 +38,24 @@ const CryptoDetail = ({ disableFetch = false }) => {
       <p><strong>Porcentaje de cambio 24h:</strong> {coinDetail.market_data.price_change_percentage_24h?.toFixed(2)}%</p>
       <p><strong>En circulación:</strong> {coinDetail.market_data.circulating_supply?.toLocaleString()} {coinDetail.symbol.toUpperCase()}</p>
       <p><strong>Sitio oficial:</strong> <a href={coinDetail.links.homepage[0]} target="_blank" rel="noopener noreferrer">{coinDetail.links.homepage[0]}</a></p>
+      <p><strong>Algoritmo de consenso:</strong> {coinDetail.hashing_algorithm || 'No disponible'}</p>
+      <p><strong>Fecha de creación:</strong> {coinDetail.genesis_date ? new Date(coinDetail.genesis_date).toLocaleDateString() : 'No disponible'}</p>
+      <p><strong>Fundador/desarrollador:</strong> {coinDetail.developer_data?.developer_score ? `Score: ${coinDetail.developer_data.developer_score}` : 'No disponible'}</p>
+      <p><strong>Tags:</strong> {coinDetail.categories?.join(', ') || 'No disponible'}</p>
+      <p><strong>Redes sociales:</strong> {
+        coinDetail.links?.twitter_screen_name ? (
+          <a href={`https://twitter.com/${coinDetail.links.twitter_screen_name}`} target="_blank" rel="noopener noreferrer">Twitter</a>
+        ) : 'No disponible'
+      } {coinDetail.links?.subreddit_url ? (
+          <a href={coinDetail.links.subreddit_url} target="_blank" rel="noopener noreferrer">Reddit</a>
+        ) : ''}
+      </p>
       <div style={{ marginTop: '1.5rem' }}>
         <strong>Descripción:</strong>
-  <div dangerouslySetInnerHTML={{ __html: (coinDetail.description.es || coinDetail.description.en || '').replace(/\);/g, '') }} />
+        <div dangerouslySetInnerHTML={{ __html: (coinDetail.description.es || coinDetail.description.en || '').replace(/\);/g, '') }} />
       </div>
-  <PriceChart prices={coinChart} />
-  <CryptoNews coinName={coinDetail.name} />
+      <PriceChart prices={coinChart} />
+      <CryptoNews coinName={coinDetail.name} />
     </div>
   );
 };
