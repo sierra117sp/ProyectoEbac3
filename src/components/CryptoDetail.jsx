@@ -19,6 +19,8 @@ const CryptoDetail = ({ disableFetch = false }) => {
     }
   }, [dispatch, id, disableFetch]);
 
+  console.log('coinDetail:', coinDetail);
+
   if (loading) return <p>Cargando...</p>;
   if (error) return <p>Error: {error}</p>;
   if (!coinDetail || !coinDetail.name) return (
