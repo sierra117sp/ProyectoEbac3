@@ -1,12 +1,69 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# ProyectoEbac3
 
-Currently, two official plugins are available:
+Este proyecto es una aplicación web desarrollada con React y Vite, que permite consultar información sobre criptomonedas, ver detalles, comparar, gestionar favoritos, y más.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características principales
+- Listado de criptomonedas con filtros y búsqueda
+- Detalle de cada criptomoneda
+- Comparador de criptomonedas
+- Conversor de divisas
+- Noticias relacionadas
+- Gestión de favoritos
+- Gráficas de precios
+- Alternancia de tema (claro/oscuro)
+- Autenticación de usuarios (Login/Registro)
 
-## Expanding the ESLint configuration
+## Estructura del proyecto
+```
+├── public/
+├── src/
+│   ├── assets/
+│   ├── components/
+│   ├── pages/
+│   ├── services/
+│   ├── store/
+│   └── styles/
+├── index.html
+├── package.json
+├── vite.config.js
+├── babel.config.cjs
+├── jest.config.cjs
+├── README.md
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Instalación
+1. Clona el repositorio:
+	```bash
+	git clone https://github.com/sierra117sp/ProyectoEbac3.git
+	```
+2. Instala las dependencias:
+	```bash
+	npm install
+	```
+3. Inicia la aplicación en modo desarrollo:
+	```bash
+	npm run dev
+	```
+
+## Scripts disponibles
+- `npm run dev` – Inicia el servidor de desarrollo
+- `npm run build` – Genera la versión de producción
+- `npm run test` – Ejecuta los tests con Jest
+
+## Pruebas
+Las pruebas unitarias están ubicadas en `src/components/__tests__/` y `src/store/`.
+
+## Tecnologías utilizadas
+- React
+- Vite
+- Redux Toolkit
+- Jest
+- Sass
+- Eslint
+
+## Autor
+- [sierra117sp](https://github.com/sierra117sp)
+
+---
+¡Contribuciones y sugerencias son bienvenidas!
